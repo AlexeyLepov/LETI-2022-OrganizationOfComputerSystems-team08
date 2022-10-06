@@ -44,7 +44,7 @@ void scroll(int direction, char l_row, char l_col, char r_row, char r_col, char 
 	r.h.cl = l_col;
 	r.h.dh = r_row;
 	r.h.dl = r_col;
-	int86(0x10, &r, &r);
+	int86(0x10, &r, &r); // Interrupt character
 }
 
 ////////////////////////
