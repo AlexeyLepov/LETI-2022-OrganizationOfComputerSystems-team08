@@ -80,7 +80,7 @@ void main()
 			insline();
 			cprintf("\r");
 			cprintf("Text color: %s \r\nBackground color: %s\r\n\n", colors_name[text], colors_name[background]);
-			delay(1200); // time deley for 1.2 seconds
+			delay(1200); // time delay for 1.2 seconds
 		}
 	}
 	getch();
