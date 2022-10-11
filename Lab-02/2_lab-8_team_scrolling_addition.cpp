@@ -111,4 +111,6 @@ void main()
 		}
 	}
 	getch();
+	clrscr(); // clear console
+	getch();
 }
