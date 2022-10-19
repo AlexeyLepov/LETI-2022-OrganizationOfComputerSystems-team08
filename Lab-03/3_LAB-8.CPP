@@ -6,7 +6,7 @@
 #include <graphics.h>
 #include <string.h>
 
-void Draw_Graphic(int N, int X1, int Y1,int Y2, int Y3, double x0, double xm, double dx, float &Fmax)
+void Draw_Graphic(int N, int X1, int Y1, int Y3, double x0, double xm, double dx, float &Fmax)
 {
 	double x;
 	float F;
@@ -40,7 +40,7 @@ int main(){
 	rectangle(10, 10, Xmax - 10, Ymax - 10);
 	setfillstyle(SOLID_FILL, BLACK);
 	floodfill(20, 20, YELLOW);
-	Draw_Graphic(N, X1, Y1, Y2, Y3, x0, xm, dx, Fmax);
+	Draw_Graphic(N, X1, Y1, Y3, x0, xm, dx, Fmax);
 	setcolor(WHITE);
 
 	setlinestyle(0, 1, 1);
@@ -71,7 +71,6 @@ int main(){
 
 	char yi[14][2];
 	int k =0;
-	int j=2;
 	for (i = 0; i < 5; i += 2)
 	{
 		sprintf(yi[k], "%d", i / 2);
@@ -83,15 +82,13 @@ int main(){
 	 outtextxy(X1-20, Y3 - 30 * i + i, yi[k]);
 	 k++;
 	}
-
 	k=0;
-
-	char cFmax[10], str[24]; //Вывод максимального значения функции
+	char cFmax[10], str[24];
 	sprintf(cFmax, "%f", Fmax);
 	strcpy(str, "Fmax = ");
 	strcat(str, cFmax);
 	setcolor(YELLOW);
-	outtextxy(30, Ymax - 35, "F = sin^3(x) + cos^2(x)");
+	outtextxy(30, Ymax - 35, "f = sin^3(x) + cos^2(x)");
 	outtextxy(300, Ymax - 35, str);
 	getch();
 	closegraph();
