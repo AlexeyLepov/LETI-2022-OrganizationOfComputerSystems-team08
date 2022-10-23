@@ -24,7 +24,6 @@ void make_graph(int N, int Y1, int Y3, double x0, double xm, double dx, float &f
 	for (i = 0, x = x0; i < N; i++, x += dx)
 	{
 		f = (float)(pow((sin(x)),3.0)+pow((cos(x)),2.0));
-	//	putpixel(X1 + i +100 , Y3 - (int)((float)(Y3 - Y1) / (2.6 / f)), YELLOW);
 		line( x1+i+100 , Y3-(int)((float)(Y3-Y1)/(2.6/f1)) , x+i+100 , Y3-(int)((float)(Y3-Y1)/(2.6/f)) );
 		x1 = x;
 		f1 = f;
