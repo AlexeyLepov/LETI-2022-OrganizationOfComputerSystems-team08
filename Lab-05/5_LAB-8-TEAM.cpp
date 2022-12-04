@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <dos.h>
-//#include <WinAble.h>
+//#include <WinAble.h> // didn't work with turboc++
 
 
 
@@ -13,42 +13,48 @@
 ///////////////////////////////////
 int keyPressHandler(int &work)
 {
-    union REGS  rg;
+    union REGS rg;
     rg.h.ah = 2;
     int86(0x16, &rg, &rg);
 	char ch;
+
+	char far *memory1=(char far *)0x417;
+	char far *memory2=(char far *)0x418;
+
 	if (kbhit())
 	{
 		ch = getch();
 		switch(ch)
 		{
-			case 61: // In case F3 pressed (3d in hex = 61 in dec) // printing 'A'/'a' symbol
-                if((rg.h.al & 0x40) == 0) // if <CapsLock> not toggled
-                {
-                    cprintf("a");
-                }
-                else
-                {
-                    cprintf("A");
-                }
-                //::keybd_event(VkKeyScan('A'),0x9e, 0, 0); // 'A' Pressing - by <WinAble.h> lib
-                //::keybd_event(VkKeyScan('A'),0x9e, KEYEVENTF_KEYUP,0); // 'A' Releasing  - by <WinAble.h> lib
+			case 61: 
+            // In case F3 pressed (3d in hex = 61 in dec) 
+            // printing 'A'/'a' symbol
+                // if <CapsLock> not toggled
+                if((rg.h.al & 0x40) == 0) cprintf("a");
+                else cprintf("A");
+                //::keybd_event(VkKeyScan('A'),0x9e, 0, 0);                 // 'A' Pressing     - by <WinAble.h> lib
+                //::keybd_event(VkKeyScan('A'),0x9e, KEYEVENTF_KEYUP,0);    // 'A' Releasing    - by <WinAble.h> lib
 			    break;
-			case 62: // In case F4 pressed (3e in hex = 62 in dec) // works as CapsLock
-                if((rg.h.al & 0x40) == 0) // if <CapsLock> not toggled
-                {
-                    outp(0x60,0xed);
-                    outp(0x60,4);
-                    //cprintf("NO"); //debbug
-                }
-                else
-                {
-                    outp(0x60,0xed);
-                    outp(0x60,0);
-                    //cprintf("YES"); //debbug
-                }
-                //::keybd_event(VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY, 0 ); // Pressing down
-                //::keybd_event(VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0); // Releasing key
+			case 62:
+            // In case F4 pressed (3e in hex = 62 in dec) 
+            // works as CapsLock
+                *memory1=*memory1 ^ 64;
+            // other methods
+                // if((rg.h.al & 0x40) == 0)    // if <CapsLock> not toggled
+                // {
+                //     outp(0x40,0xed);         // set keyboard processor to alter indicators
+                //     outp(0x40,0);            // turn on indication
+                //     cprintf("NO");   //debbug
+                // }
+                // else
+                // {
+                //     outp(0x40,0xed);         // set keyboard processor to alter indicators
+                //     outp(0x40,0);            // turn off indication
+                //     cprintf("YES");  //debbug
+                // }
+            // other methods
+                //::keybd_event(VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY, 0 );                   // Pressing down    - by <WinAble.h> lib
+                //::keybd_event(VK_CAPITAL, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);  // Releasing key    - by <WinAble.h> lib
                 break;
 			case 27:
 			    work = 0;
