@@ -1,0 +1,32 @@
+Замечания и ошибки
+
+0. Не указано, откуда идет нумерация бит.
+1.Мне неясна реакция программы на след ввод
+enter your number: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+if you entered a number that is too large or too small,it will be changed according to the data type.
+For data type long, acceptable values are [-2147483648...2147483647], for data type double - [-9223372036854775808.0...9223372036854775807.0].
+
+you are using long type
+numL = -1
+00000000000000000000000000000001
+11111111111111111111111111111110
+binary form of a number:
+11111111111111111111111111111111
+Enter the position:
+Т.е., если я ввожу очень большое целое, то оно воспринимается как long type, но почему как -1?
+Очень большое целое Вы трактуете как 1 во всех 32 разрядах?
+
+2. Если я в продолжу ввод в предыдущем жди фрагменте, то программа зацикливается.
+enter your number: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+if you entered a number that isны  too large or too small,it will be changed according to the data type.
+For data type long, acceptable values are [-2147483648...2147483647], for data type double - [-9223372036854775808.0...9223372036854775807.0].
+
+you are using long type
+numL = -1
+00000000000000000000000000000001
+11111111111111111111111111111110
+binary form of a number:
+11111111111111111111111111111111
+Enter the position: ы
+the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new one: the value should be in the range from 1 to 31, enter a new ....
+3. Ситуация с п.2 повторяется при аналогичном вводе длины цепочки и количества сдвигов.
